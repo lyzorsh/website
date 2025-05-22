@@ -2,40 +2,32 @@ import type { Member } from "@/types/member";
 
 export const members: Member[] = [
   {
-    name: "cortex",
-    link: "https://cortex.rest/",
-    github: "refurbishing",
-    discord_id: "400111022901559298",
+    name: "lockfile",
+    link: "https://doxiado.dev/",
+    github: "doxiado-dev",
+    discord_id: "763141886834769980",
     projects: [
       {
-        name: "Equibop",
+        name: "coffin.vip",
         description:
-          "A custom Discord App aiming to give you better performance and improvements forked from Vesktop",
-        url: "https://github.com/Equicord/Equibop",
-        icon: "https://raw.githubusercontent.com/Equicord/Equibop/main/static/icon.png",
-        type: "website" as const,
-      },
-      {
-        name: "VNREZ",
-        description:
-          "A utility-suite for Linux that records and screenshots your files easily and uploads them to a file host if desired",
-        url: "https://github.com/refurbishing/vnrez",
-        icon: "https://raw.githubusercontent.com/refurbishing/vnrez/main/assets/logo.png",
+          "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
+        url: "https://github.com/bot-coffin",
+        icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
         type: "website" as const,
       },
     ],
   },
   {
-    name: "arespro",
-    link: "#",
-    github: "arespro074",
-    discord_id: "573610301140762664",
+    name: "iduckfult",
+    link: "https://github.com/duckccy",
+    github: "duckccy",
+    discord_id: "617183072626016256",
   },
   {
-    name: "nyx",
-    link: "https://github.com/verticalsync",
-    discord_id: "1207087393929171095",
-    github: "verticalsync",
+    name: "Nova",
+    link: "https://github.com/Nova-Prolab",
+    discord_id: "542192795289518086",
+    github: "Nova-Prolab",
     projects: [
       {
         name: "Equicord",
