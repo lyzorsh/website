@@ -48,37 +48,22 @@ export const members: Member[] = [
     ],
   },
   {
-    name: "wiremoney",
-    link: "https://firebombed.icu/",
-    discord_id: "865911778235908168",
-    projects: [{
-      name: "Meth Cloud",
-      icon: "https://cdn.nest.rip/uploads/bebd0c2a-10dc-4020-a030-64939d5fe279.jpg",
-      url: "https://t.me/MethCloudBot",
-      description: "log drops, buy accounts, private hotmail and mixed cloud, etc",
-      type: "website" as const,
-    }],
-  },
-  {
     name: "iduckfult",
     link: "https://github.com/duckccy",
     github: "duckccy",
     discord_id: "617183072626016256",
   },
   {
-    name: "confirmed",
-    link: "https://hypixel.lol/",
-    discord_id: "657587508837613580", // 1235921714425106493 seconds UserID incase 
-    github: "euro-pol",
-    projects: [
-      {
-        name: "Hypixel.lol",
-        description: "Private Mail-solution.",
-        url: "https://hypixel.lol/",
-        icon: "https://media.discordapp.net/attachments/1369744751267418316/1372743786362306600/globe_1.png?ex=6827e2c7&is=68269147&hm=e30979dd77a95a354369c69e269ec5f87b354aebb40cab9fe79c5c5e04188eae&=&format=png&quality=lossless", // add logo later on - ares
-        type: "website" as const,
+    name: "loljaj",
+    link: "https://github.com/",
+    github: "",
+    discord_id: "",
   },
-],
+  {
+    name: "Nova",
+    link: "https://github.com/Nova-Prolab",
+    discord_id: "542192795289518086",
+    github: "Nova-Prolab",
   },
   {
     name: "cyp",
@@ -96,10 +81,19 @@ export const members: Member[] = [
     ],
   },
   {
-    name: "Nova",
-    link: "https://github.com/Nova-Prolab",
-    discord_id: "542192795289518086",
-    github: "Nova-Prolab",
+    name: "confirmed",
+    link: "https://hypixel.lol/",
+    discord_id: "657587508837613580", // 1235921714425106493 seconds UserID incase 
+    github: "euro-pol",
+    projects: [
+      {
+        name: "Hypixel.lol",
+        description: "Private Mail-solution.",
+        url: "https://hypixel.lol/",
+        icon: "https://media.discordapp.net/attachments/1369744751267418316/1372743786362306600/globe_1.png?ex=6827e2c7&is=68269147&hm=e30979dd77a95a354369c69e269ec5f87b354aebb40cab9fe79c5c5e04188eae&=&format=png&quality=lossless", // add logo later on - ares
+        type: "website" as const,
+  },
+],
   },
   {
     name: "bird",
