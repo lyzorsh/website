@@ -54,9 +54,9 @@ const members: ExtendedMember[] = [
     ],
   },
   {
-    name: "arespro",
+    name: "iduckfult",
     link: "#",
-    discord_id: "573610301140762664",
+    discord_id: "617183072626016256",
   },
   {
     name: "vera",
