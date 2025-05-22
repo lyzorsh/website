@@ -39,8 +39,8 @@ type Stats = GitHubStats;
 const members: ExtendedMember[] = [
   {
     name: "lockfile",
-    link: "https://cortex.rest/",
-    github: "dev-doxiado",
+    link: "https://doxiado.dev/",
+    github: "doxiado-dev",
     discord_id: "763141886834769980",
     projects: [
       {
@@ -49,13 +49,6 @@ const members: ExtendedMember[] = [
           "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
         url: "https://github.com/bot-coffin",
         icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
-        type: "website",
-      },
-      {
-        name: "VNREZ",
-        description:
-          "A utility-suite for Linux that records and screenshots your files easily and uploads them to a file host if desired",
-        url: "https://github.com/refurbishing/vnrez",
         type: "website",
       },
     ],
