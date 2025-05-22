@@ -1,13 +1,13 @@
-## vxnet
+## lyzor
 
-Official website made for vxnet, available [here](https://simswapp.ing)
+Official website made for lyzor, available [here](https://lyzor.netlify.app)
 
 ### Contribute
 
 To setup the repo:
 
 ```
-git clone https://github.com/vxnetsh/website
+git clone https://github.com/lyzorsh/website
 cd website
 bun i
 ```
