@@ -435,7 +435,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <Link href="https://github.com/vxnetsh/website" target="_blank">
+        <Link href="https://github.com/lyzorsh/website" target="_blank">
           <div className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-all duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -481,7 +481,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               >
-                vxnet
+                lyzor
               </motion.span>
             </motion.div>
           </motion.div>
