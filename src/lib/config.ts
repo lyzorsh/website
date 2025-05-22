@@ -2,22 +2,42 @@ import type { Member } from "@/types/member";
 
 export const members: Member[] = [
   {
-    name: "cache",
-    link: "https://github.com/x2dh",
-    github: "x2dh",
-    discord_id: "1243274323402293259",
+    name: "lockfile",
+    link: "https://doxiado.dev/",
+    github: "doxiado-dev",
+    discord_id: "763141886834769980",
+    projects: [
+      {
+        name: "coffin.vip",
+        description:
+          "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
+        url: "https://github.com/bot-coffin",
+        icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
+        type: "website" as const,
+      },
+    ],
   },
   {
-    name: ".tyoudm",
-    link: "https://github.com/",
-    github: "",
-    discord_id: "",
+    name: "iduckfult",
+    link: "#",
+    github: "arespro074",
+    discord_id: "573610301140762664",
   },
   {
-    name: "zamu",
-    link: "https://github.com/",
-    discord_id: "",
-    github: "",
+    name: "nyx",
+    link: "https://github.com/verticalsync",
+    discord_id: "1207087393929171095",
+    github: "verticalsync",
+    projects: [
+      {
+        name: "Equicord",
+        description:
+          "A fork of Vencord, with over 300+ plugins.",
+        url: "https://equicord.org",
+        type: "website" as const,
+        icon: "https://media.discordapp.net/attachments/1369744751267418316/1372735973397368943/equi.png?ex=6827db80&is=68268a00&hm=e8d74f6bb7b94111cdeb267e68656d34d2dc887f25df6914205843555e27dc91&=&format=png&quality=lossless",
+      },
+    ],
   },
   {
     name: "vera",
@@ -32,50 +52,97 @@ export const members: Member[] = [
     
   },
   {
-    name: "doxiado",
-    link: "https://doxiado.dev",
-    discord_id: "763141886834769980",
-    github: "doxiado-dev",
+    name: "body",
+    link: "https://body.sh",
+    discord_id: "1273083391004246080",
+    github: "Body-Alhoha",
     projects: [
       {
-        name: "coffin.vip",
+        name: "Ectasy",
         description:
-          "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
-        url: "https://github.com/bot-coffin",
-        icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
+          "Ectasy was a popular minecraft/forceop backdoor with 13 000 users online from 2020 to 2024.",
+        url: "https://youtu.be/MVtue3WOZCo",
+        icon: "https://body.sh/assets/projects/ectasy.png",
         type: "website" as const,
+      },
+      {
+        name: "Hera",
+        description: "Hera was an injectable client made for minecaft 1.8.9",
+        url: "https://youtu.be/R8PfNni_xZk",
+        icon: "https://body.sh/assets/projects/hera.png",
+        type: "website" as const,
+      },
+      {
+        name: "Stellar Tweaks",
+        description:
+          "Stellar Tweaks is an upcoming free and opensource modification for Lunar Client which allows modding, customizing Lunar Client features and much more",
+        url: "https://github.com/StellarTweaks",
+        icon: "https://cdn.discordapp.com/icons/1330204720014426122/aa45672764ca374d665fa4a2c291a96e.png?size=128",
+        type: "github" as const,
+      },
+      {
+        name: "Turnaround",
+        description:
+          "Turnaround was a free and opensource solver for Cloudfare's turnstile",
+        url: "https://github.com/Body-Alhoha/turnaround",
+        type: "github" as const,
+      },
+      {
+        name: "Remake",
+        description:
+          "Remake is a free and opensource library to modify Java classes at runtime, without the need of any java agent",
+        url: "https://github.com/StellarTweaks/Remake",
+        type: "github" as const,
       },
     ],
   },
   {
-    name: "iduckfult",
-    link: "https://github.com/duckccy",
-    github: "duckccy",
-    discord_id: "617183072626016256",
+    name: "wiremoney",
+    link: "https://firebombed.icu/",
+    discord_id: "865911778235908168",
+    projects: [{
+      name: "Meth Cloud",
+      icon: "https://cdn.nest.rip/uploads/bebd0c2a-10dc-4020-a030-64939d5fe279.jpg",
+      url: "https://t.me/MethCloudBot",
+      description: "log drops, buy accounts, private hotmail and mixed cloud, etc",
+      type: "website" as const,
+    }],
   },
   {
-    name: "loljaj",
-    link: "https://github.com/",
-    github: "",
-    discord_id: "",
-  },
-  {
-    name: "Nova",
-    link: "https://github.com/Nova-Prolab",
-    discord_id: "542192795289518086",
-    github: "Nova-Prolab",
-  },
-  {
-    name: "cyp",
-    link: "https://privm.net/",
-    discord_id: "667148181506883584",
-    github: "cypdev",
+    name: "bhop",
+    link: "https://bhop.rest",
+    github: "prettylittlelies",
+    discord_id: "442626774841556992",
     projects: [
       {
-        name: "PriVM",
-        description: "Privacy Focussed Hosting.",
-        url: "https://privm.net/",
-        icon: "https://privm.net/storage/logo.webp",
+        name: "Greed",
+        description:
+          "The only aesthetic multi-functional Discord bot you need.",
+        url: "https://greed.best",
+        icon: "https://r2.greed.best/greedav.png",
+        type: "website" as const,
+      },
+      {
+        name: "evict.bot",
+        description:
+          "An all-in-one bot that streamlines server management without compromising on aesthetics.",
+        url: "https://evict.bot",
+        icon: "https://r2.evict.bot/evict-marketing.png",
+        type: "website" as const,
+      },
+      {
+        name: "Tempt",
+        description: "A powerful Discord bot for your community",
+        url: "https://tempt.lol",
+        icon: "https://cdn.discordapp.com/avatars/1367774588750266408/a271d4855b63b329567c173cbd3557f9.png?size=1024",
+        type: "website" as const,
+      },
+      {
+        name: "emogir.ls",
+        description:
+          "A premium solution for e-mails, image uploading & showing off your digital portfolio.",
+        url: "https://emogir.ls",
+        icon: "https://cdn.discordapp.com/icons/1342461398390673510/9fe83c2624090277777128505ac1bd53.png",
         type: "website" as const,
       },
     ],
@@ -94,6 +161,43 @@ export const members: Member[] = [
         type: "website" as const,
   },
 ],
+  },
+  {
+    name: "cyp",
+    link: "https://privm.net/",
+    discord_id: "667148181506883584",
+    github: "cypdev",
+    projects: [
+      {
+        name: "PriVM",
+        description: "Privacy Focussed Hosting.",
+        url: "https://privm.net/",
+        icon: "https://privm.net/storage/logo.webp",
+        type: "website" as const,
+      },
+    ],
+  },
+  {
+    name: "catchii",
+    link: "https://catchii.cat/",
+    discord_id: "1201465397988315158",
+    projects: [
+      {
+        name: "guns.lol",
+        description:
+          "A bio page platform where users can create profiles to showcase their links and social media.",
+        url: "https://guns.lol/",
+        icon: "https://assets.guns.lol/guns_logo_no_background_cropped.png",
+        type: "website" as const,
+      },
+      {
+        name: "MailHaven",
+        description: "Your privacy matters. That’s why we created MailHaven, a free secure and privacy-respected email service designed for you.",
+        url: "https://mailhaven.su",
+        icon: "https://cdn.nest.rip/uploads/68dd7dca-4d81-4313-b511-7cd6e4695139.jpg",
+        type: "website" as const,
+      }
+    ],
   },
   {
     name: "bird",
