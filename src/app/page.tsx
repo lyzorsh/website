@@ -5,261 +5,31 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import ColorThief from "colorthief";
-import { fetchGitHubStatsBatch } from "@/lib/actions";
+import { fetchGitHub } from "@/lib/actions";
 import type { GitHubStats } from "@/lib/actions";
 import { Card } from "@/components/ui/card";
+import { members } from "@/lib/config";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
-  Member,
   LanyardWebSocket,
   getLanyardData,
   LanyardData,
   Activity,
 } from "@/lib/lanyard";
+import type { Member, Project } from "@/types/member";
+import dynamic from 'next/dynamic';
+import music from "@/lib/music.json"
 
-type Project = {
-  name: string;
-  description: string;
-  icon?: string;
-  url: string;
-  type: "website" | "github";
-};
-
-type ExtendedMember = Member & {
-  projects?: Project[];
-  stats?: Stats;
-};
+const Player = dynamic(() => import('lottie-react'), { ssr: false });
 
 type ExtendedActivity = Activity & {
   application_id?: string;
 };
 
-type Stats = GitHubStats;
-
-const members: ExtendedMember[] = [
-  {
-    name: "lockfile",
-    link: "https://doxiado.dev/",
-    github: "doxiado-dev",
-    discord_id: "763141886834769980",
-    projects: [
-      {
-        name: "coffin.vip",
-        description:
-          "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
-        url: "https://github.com/bot-coffin",
-        icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "iduckfult",
-    link: "#",
-    discord_id: "617183072626016256",
-  },
-  {
-    name: "vera",
-    link: "https://t.me/mumri_k",
-    discord_id: "1334868066021933130",
-  },
-  {
-    name: "woosh",
-    link: "https://woosh.ing/",
-    discord_id: "919239894327521361",
-    github: "w8y",
-  },
-  {
-    name: "body",
-    link: "https://body.sh",
-    discord_id: "1260988143423848520",
-    github: "Body-Alhoha",
-    projects: [
-      {
-        name: "Ectasy",
-        description:
-          "Ectasy was a popular minecraft/forceop backdoor with 13 000 users online from 2020 to 2024.",
-        url: "https://youtu.be/MVtue3WOZCo",
-        icon: "https://body.sh/assets/projects/ectasy.png",
-        type: "website",
-      },
-      {
-        name: "Hera",
-        description: "Hera was an injectable client made for minecaft 1.8.9",
-        url: "https://youtu.be/R8PfNni_xZk",
-        icon: "https://body.sh/assets/projects/hera.png",
-        type: "website",
-      },
-      {
-        name: "Stellar Tweaks",
-        description:
-          "Stellar Tweaks is an upcoming free and opensource modification for Lunar Client which allows modding, customizing Lunar Client features and much more",
-        url: "https://github.com/StellarTweaks",
-        icon: "https://cdn.discordapp.com/icons/1330204720014426122/aa45672764ca374d665fa4a2c291a96e.png?size=128",
-        type: "github",
-      },
-      {
-        name: "Turnaround",
-        description:
-          "Turnaround was a free and opensource solver for Cloudfare's turnstile",
-        url: "https://github.com/Body-Alhoha/turnaround",
-        type: "github",
-      },
-      {
-        name: "Remake",
-        description:
-          "Remake is a free and opensource library to modify Java classes at runtime, without the need of any java agent",
-        url: "https://github.com/StellarTweaks/Remake",
-        type: "github",
-      },
-    ],
-  },
-  {
-    name: "crxa",
-    link: "https://crxaw.tech/",
-    discord_id: "920290194886914069",
-    github: "sitescript",
-    projects: [
-      {
-        name: "Heist.lol",
-        description:
-          "Contributor at Heist - A versatile multipurpose bot designed to elevate your Discord server and DMs",
-        url: "https://heist.lol",
-        icon: "https://raw.githubusercontent.com/csynholic/csyn.me/refs/heads/main/assets/heist.png",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "wiremoney",
-    link: "https://firebombed.icu/",
-    discord_id: "865911778235908168",
-  },
-  {
-    name: "nyx",
-    link: "https://github.com/verticalsync",
-    discord_id: "1207087393929171095",
-    github: "verticalsync",
-    projects: [
-      {
-        name: "Equibop",
-        description:
-          "A custom Discord App aiming to give you better performance and improvements forked from Vesktop",
-        url: "https://github.com/Equicord/Equibop",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "bhop",
-    link: "https://bhop.rest",
-    github: "prettylittlelies",
-    discord_id: "442626774841556992",
-    projects: [
-      {
-        name: "emogir.ls",
-        description:
-          "A premium solution for e-mails, image uploading & showing off your digital portfolio.",
-        url: "https://emogir.ls",
-        icon: "https://cdn.discordapp.com/icons/1342461398390673510/9fe83c2624090277777128505ac1bd53.png",
-        type: "website",
-      },
-      {
-        name: "evict.bot",
-        description:
-          "An all-in-one bot that streamlines server management without compromising on aesthetics.",
-        url: "https://evict.bot",
-        icon: "https://r2.evict.bot/evict-marketing.png",
-        type: "website",
-      },
-      {
-        name: "lure.rocks",
-        description: "A powerful Discord bot for your community",
-        url: "https://lure.rocks",
-        icon: "https://m.lure.rocks/no_bg_avatar.png",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "confirmed",
-    link: "https://hypixel.lol/",
-    discord_id: "1235921714425106493",
-    github: "euro-pol",
-  },
-  {
-    name: "vmohammad",
-    link: "https://vmohammad.dev/",
-    discord_id: "921098159348924457",
-    github: "vMohammad24",
-    projects: [
-      {
-        name: "nest.rip",
-        description: "nest.rip is your secure place to store files",
-        url: "https://nest.rip/",
-        icon: "https://nest.rip/logo.png",
-        type: "website",
-      },
-      {
-        name: "VOT",
-        description:
-          "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
-        url: "https://vot.wtf/",
-        icon: "https://vot.wtf/vot_transparent.png",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "cyprian",
-    link: "https://privm.net/",
-    discord_id: "147823075382001664",
-    projects: [
-      {
-        name: "Privm",
-        description: "Privacy Focussed Hosting.",
-        url: "https://privm.net/",
-        icon: "https://privm.net/assets/core/img/favicon.png",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "ic3",
-    link: "https://ic3.cash/",
-    discord_id: "1181174180578857036",
-  },
-  {
-    name: "catchii",
-    link: "https://catchii.cat/",
-    discord_id: "1201465397988315158",
-    projects: [
-      {
-        name: "guns.lol",
-        description:
-          "A bio page platform where users can create profiles to showcase their links and social media.",
-        url: "https://guns.lol/",
-        icon: "https://assets.guns.lol/guns_logo_no_background_cropped.png",
-        type: "website",
-      },
-    ],
-  },
-  {
-    name: "bird",
-    link: "#",
-    discord_id: "1095599396860723210",
-  },
-  {
-    name: "external",
-    link: "#",
-    discord_id: "1323491828648906855",
-  },
-  {
-    name: "epik",
-    link: "https://epikest.moe",
-    discord_id: "1103990609171193867",
-  },
-];
+type ExtendedMember = Member & {
+  discord_data?: LanyardData | null;
+  stats?: GitHubStats;
+};
 
 const extractSpotifyColor = async (
   url: string,
@@ -290,7 +60,7 @@ export default function Home() {
         string,
         Member & {
           discord_data?: LanyardData | null;
-          stats?: Stats | null;
+          stats?: GitHubStats | null;
           projects?: Project[];
         }
       >
@@ -317,7 +87,7 @@ export default function Home() {
 
       const githubUsers = members.filter((m) => m.github).map((m) => m.github!);
       if (githubUsers.length > 0) {
-        const stats = await fetchGitHubStatsBatch(githubUsers);
+        const stats = await fetchGitHub(githubUsers);
         githubUsers.forEach((github, index) => {
           const member = members.find((m) => m.github === github);
           if (member && stats[index]) {
@@ -371,7 +141,7 @@ export default function Home() {
       const progress = Math.min(
         Math.max(
           (now - spotifyData.timestamps.start) /
-            (spotifyData.timestamps.end - spotifyData.timestamps.start),
+          (spotifyData.timestamps.end - spotifyData.timestamps.start),
           0,
         ),
         1,
@@ -442,6 +212,63 @@ export default function Home() {
     );
   };
 
+  const renderAvatar = (
+    member: ExtendedMember & {
+      discord_data?: LanyardData | null;
+      stats?: {
+        repos: number;
+        followers: number;
+        contributions: number;
+        avatar_url: string;
+        bio: string | null;
+      } | null;
+    },
+    isLoading?: boolean
+  ) => {
+    if (isLoading) {
+      return (
+        <div className="relative">
+          <div className="w-6 h-6 rounded-full overflow-hidden bg-white/10 animate-pulse" />
+          <div className="absolute -bottom-[2px] -right-[2px] w-2.5 h-2.5 rounded-full border-[2.5px] bg-white/10 animate-pulse" style={{ borderColor: "rgb(35, 35, 35)" }} />
+        </div>
+      );
+    }
+
+    if (member.discord_data?.discord_user.avatar) {
+      return (
+        <div className="relative">
+          <div className="w-6 h-6 rounded-full overflow-hidden">
+            <img
+              src={getAvatarUrl(member) || ""}
+              alt={member.name}
+              width={24}
+              height={24}
+              className="object-cover"
+            />
+          </div>
+          {renderStatusIndicator(member, "sm")}
+        </div>
+      );
+    }
+    if (member.github) {
+      return (
+        <div className="relative">
+          <div className="w-6 h-6 rounded-full overflow-hidden">
+            <img
+              src={member.stats?.avatar_url || `https://github.com/${member.github}.png`}
+              alt={member.name}
+              width={24}
+              height={24}
+              className="object-cover"
+            />
+          </div>
+          {renderStatusIndicator(member, "sm")}
+        </div>
+      );
+    }
+    return null;
+  };
+
   const renderActivities = (activities: ExtendedActivity[]) => {
     if (!activities.length) return null;
 
@@ -458,12 +285,13 @@ export default function Home() {
     };
 
     const isSpotify = activity.name === "Spotify";
+    const isCustomStatus = activity.type === 4;
     const spotifyData = isSpotify && currentMemberData?.discord_data?.spotify;
 
     return (
       <motion.div
         layout="position"
-        className="flex flex-col gap-1 bg-white/5 rounded-md p-2 w-full relative overflow-hidden"
+        className="flex flex-col gap-1 bg-white/5 rounded-md p-2 w-full relative overflow-hidden select-none"
         transition={{ duration: 0.3, ease: "easeOut" }}
         onClick={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
@@ -520,15 +348,35 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               src={
-                activity.assets.large_image.startsWith("spotify:")
-                  ? `https://i.scdn.co/image/${activity.assets.large_image.split(":")[1]}`
-                  : activity.assets.large_image.startsWith("mp:external")
-                    ? `https://media.discordapp.net/external/${activity.assets.large_image.split("/")[2]}/${activity.assets.large_image.split("/")[3]}`
-                    : `https://dcdn.dstn.to/app-icons/${activity.application_id}?size=1024`
+                activity.assets.large_image.startsWith("mp:external/")
+                  ? `https://${activity.assets.large_image.split("/").slice(3).join("/")}`
+                  : activity.assets.large_image.startsWith("spotify:")
+                    ? `https://i.scdn.co/image/${activity.assets.large_image.split(":")[1]}`
+                    : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
               }
               alt={activity.name}
               className="w-12 h-12 rounded-md flex-shrink-0 object-cover"
             />
+          ) : isCustomStatus && activity.emoji ? (
+            activity.emoji.id ? (
+              <motion.img
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                src={`https://cdn.discordapp.com/emojis/${activity.emoji.id}.${activity.emoji.animated ? "gif" : "png"}`}
+                alt={activity.emoji.name}
+                className="w-6 h-6 flex-shrink-0"
+              />
+            ) : (
+              <motion.img
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                src={`https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/${activity.emoji.name.codePointAt(0)?.toString(16)}.svg`}
+                alt={activity.emoji.name}
+                className="w-6 h-6 flex-shrink-0"
+              />
+            )
           ) : null}
           <motion.div
             layout="position"
@@ -538,9 +386,9 @@ export default function Home() {
               layout="position"
               className="text-sm font-medium break-words"
             >
-              {activity.name}
+              {isCustomStatus ? activity.state : activity.name}
             </motion.span>
-            {activity.details && (
+            {!isCustomStatus && activity.details && (
               <motion.span
                 layout="position"
                 initial={{ opacity: 0, y: -5 }}
@@ -551,7 +399,7 @@ export default function Home() {
                 {activity.details}
               </motion.span>
             )}
-            {activity.state && (
+            {!isCustomStatus && activity.state && (
               <motion.span
                 layout="position"
                 initial={{ opacity: 0, y: -5 }}
@@ -587,7 +435,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <Link href="https://github.com/lyzorsh/website" target="_blank">
+        <Link href="https://github.com/vxnetsh/website" target="_blank">
           <div className="bg-white/10 p-1.5 rounded-full hover:bg-white/20 transition-all duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -603,12 +451,12 @@ export default function Home() {
       </motion.div>
       <div className="container mx-auto flex flex-col gap-6 p-6">
         <motion.div
-          className="flex-1 flex flex-col items-center justify-center gap-6"
+          className="flex-1 flex flex-col items-center justify-center gap-6 w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <motion.div className="flex flex-col items-center justify-center gap-4">
+          <motion.div className="flex flex-col items-center justify-center gap-4 w-full">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -617,6 +465,7 @@ export default function Home() {
                 delay: 0.2,
                 ease: [0.175, 0.885, 0.32, 1.275],
               }}
+              className="flex flex-col items-center justify-center"
             >
               <Image
                 src="/icon.png"
@@ -626,25 +475,25 @@ export default function Home() {
                 height={225}
                 priority
               />
+              <motion.span
+                className="text-3xl font-bold mt-4"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              >
+                vxnet
+              </motion.span>
             </motion.div>
-            <motion.span
-              className="text-3xl font-bold"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            >
-              low
-            </motion.span>
           </motion.div>
 
           <motion.div
-            className="flex flex-col gap-4 w-full max-w-2xl"
+            className="flex flex-col gap-4 w-full max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="flex justify-center items-center gap-1">
-              {members.slice(0, 2).map((member, index) => (
+            <div className="grid grid-cols-3 gap-6 w-full max-w-lg mx-auto">
+              {members.slice(0, 3).map((member, index) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -655,42 +504,38 @@ export default function Home() {
                     ease: "easeOut",
                   }}
                   whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                  className="flex items-center gap-1"
+                  className="flex flex-1"
                 >
                   <Card
-                    className="px-4 py-1 cursor-pointer transition-all hover:bg-white/10 bg-transparent relative"
+                    className="px-5 py-1.5 cursor-pointer transition-all hover:bg-white/10 bg-transparent relative w-full"
                     onClick={() => handleMemberSelect(member)}
                   >
-                    <div className="flex items-center gap-2">
-                      {member.discord_id &&
-                        memberData[member.name]?.discord_data && (
-                          <div className="relative">
-                            <div className="w-6 h-6 rounded-full overflow-hidden">
-                              <img
-                                src={
-                                  getAvatarUrl(memberData[member.name]) || ""
-                                }
-                                alt={member.name}
-                                width={24}
-                                height={24}
-                                className="object-cover"
-                              />
-                            </div>
-                            {renderStatusIndicator(
-                              memberData[member.name],
-                              "sm",
-                            )}
-                          </div>
-                        )}
-                      <span className="text-base font-medium">
+                    <div className="flex items-center justify-center gap-2">
+                      {member.discord_id && (
+                        renderAvatar(memberData[member.name], !memberData[member.name]?.discord_data)
+                      )}
+                      <span className="text-base font-medium whitespace-nowrap">
                         {member.name}
+                        {memberData[member.name]?.discord_data?.spotify && (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.5 }}
+                            className="inline-block ml-1.5 text-white/60"
+                          >
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" 
+                              viewBox="0 0 24 24" 
+                              fill="currentColor" 
+                              className="w-3.5 h-3.5"
+                            >
+                              <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.684 1.657A4.505 4.505 0 0018.75 7.5H5.25z"/>
+                            </svg>
+                          </motion.div>
+                        )}
                       </span>
                     </div>
                   </Card>
-
-                  {index === 0 && (
-                    <span className="text-white/20 w-4 text-center">•</span>
-                  )}
                 </motion.div>
               ))}
             </div>
@@ -701,7 +546,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
             >
-              {members.slice(2).map((member, index) => (
+              {members.slice(3).map((member, index) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 15 }}
@@ -718,28 +563,36 @@ export default function Home() {
                     className="grow px-3 py-2 cursor-pointer transition-all hover:bg-white/10 bg-transparent relative"
                     onClick={() => handleMemberSelect(member)}
                   >
-                    <div className="flex justify-center items-center gap-2">
-                      {member.discord_id &&
-                        memberData[member.name]?.discord_data && (
-                          <div className="relative">
-                            <div className="w-6 h-6 rounded-full overflow-hidden">
-                              <img
-                                src={
-                                  getAvatarUrl(memberData[member.name]) || ""
-                                }
-                                alt={member.name}
-                                width={24}
-                                height={24}
-                                className="object-cover"
-                              />
-                            </div>
-                            {renderStatusIndicator(
-                              memberData[member.name],
-                              "sm",
-                            )}
-                          </div>
-                        )}
-                      <span className="text-sm">{member.name}</span>
+                    <div className="flex items-center gap-2 w-full">
+                      {member.discord_id && (
+                        renderAvatar(memberData[member.name], !memberData[member.name]?.discord_data)
+                      )}
+                      <span className="text-sm flex items-center gap-1.5 flex-1 justify-center">
+                        {member.name}
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.5, width: 0, rotate: 0 }}
+                          animate={{
+                            opacity: memberData[member.name]?.discord_data?.spotify ? 1 : 0,
+                            scale: memberData[member.name]?.discord_data?.spotify ? 1 : 0.5,
+                            width: memberData[member.name]?.discord_data?.spotify ? "auto" : 0,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                            ease: "easeInOut"
+                          }}
+                          className="text-white/60 overflow-hidden"
+                        >
+                          <Player
+                            autoplay
+                            loop
+                            animationData={music}
+                            style={{ width: 15, height: 15 }}
+                            rendererSettings={{
+                              preserveAspectRatio: "xMidYMid slice",
+                            }}
+                          />
+                        </motion.div>
+                      </span>
                     </div>
                   </Card>
 
@@ -930,8 +783,8 @@ export default function Home() {
                         <h3 className="text-sm font-medium mb-3">Projects</h3>
                         <div className="grid gap-2">
                           {currentMemberData.projects
-                            ?.slice((currentPage - 1) * 2, currentPage * 2)
-                            ?.map((project, idx) => (
+                            .slice((currentPage - 1) * 2, currentPage * 2)
+                            .map((project, idx) => (
                               <motion.div
                                 key={project.name}
                                 initial={{ opacity: 0, y: 10 }}
@@ -1003,26 +856,25 @@ export default function Home() {
                               {
                                 length: Math.ceil(
                                   (currentMemberData?.projects?.length ?? 0) /
-                                    2,
+                                  2,
                                 ),
                               },
                               (_, i) => (
                                 <motion.button
                                   key={i + 1}
                                   onClick={() => setCurrentPage(i + 1)}
-                                  className={`w-2 h-2 p-2 rounded-full relative transition-colors duration-300 ${
-                                    currentPage === i + 1
-                                      ? "bg-white/60"
-                                      : "bg-white/10 hover:bg-white/20"
-                                  }`}
+                                  className={`w-2 h-2 p-2 rounded-full relative transition-colors duration-300 ${currentPage === i + 1
+                                    ? "bg-white/60"
+                                    : "bg-white/10 hover:bg-white/20"
+                                    }`}
                                   whileHover={{ scale: 1.2 }}
                                   whileTap={{ scale: 0.9 }}
                                   animate={
                                     currentPage === i + 1
                                       ? {
-                                          scale: [1, 1.2, 1],
-                                          transition: { duration: 0.5 },
-                                        }
+                                        scale: [1, 1.2, 1],
+                                        transition: { duration: 0.5 },
+                                      }
                                       : { scale: 1 }
                                   }
                                 >

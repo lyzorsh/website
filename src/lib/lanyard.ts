@@ -5,6 +5,11 @@ export interface Activity {
   id: string;
   details?: string;
   created_at: number;
+  emoji?: {
+    id: string;
+    name: string;
+    animated?: boolean;
+  };
   assets?: {
     large_image?: string;
     large_text?: string;
@@ -29,6 +34,10 @@ export interface LanyardData {
     avatar: string;
     discriminator: string;
     global_name: string;
+    avatar_decoration_data?: {
+      sku_id: string;
+      asset: string;
+    }
   };
   discord_status: "online" | "idle" | "dnd" | "offline";
   activities: Activity[];
@@ -51,8 +60,8 @@ export type Member = {
   projects?: Project[];
 };
 
-const LANYARD_SOCKET_URL = "wss://lanyard.vmohammad.dev/socket";
-const LANYARD_API_URL = "https://lanyard.vmohammad.dev/v1";
+const LANYARD_SOCKET_URL = "wss://lanyard.vxnet.sh/socket";
+const LANYARD_API_URL = "https://lanyard.vxnet.sh/v1";
 
 export class LanyardWebSocket {
   private ws: WebSocket | null = null;
