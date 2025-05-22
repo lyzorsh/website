@@ -38,16 +38,17 @@ type Stats = GitHubStats;
 
 const members: ExtendedMember[] = [
   {
-    name: "cortex",
+    name: "lockfile",
     link: "https://cortex.rest/",
-    github: "refurbishing",
-    discord_id: "400111022901559298",
+    github: "dev-doxiado",
+    discord_id: "763141886834769980",
     projects: [
       {
-        name: "Equibop",
+        name: "coffin.vip",
         description:
-          "A custom Discord App aiming to give you better performance and improvements forked from Vesktop",
-        url: "https://github.com/Equicord/Equibop",
+          "The all-in-one Discord bot that brings your server to life with powerful moderation, music, and fun features",
+        url: "https://github.com/bot-coffin",
+        icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
         type: "website",
       },
       {
