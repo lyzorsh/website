@@ -5,7 +5,6 @@ export const members: Member[] = [
     name: "lockfile",
     link: "https://doxiado.dev/",
     github: "doxiado-dev",
-    icon: "https://cdn.discordapp.com/avatars/1363652581355819238/353d5b6b460e2fbe2c04a1c2c60f906d.png?size=4096",
     discord_id: "763141886834769980",
     projects: [
       {
@@ -19,7 +18,7 @@ export const members: Member[] = [
     ],
   },
   {
-    name: "nova",
+    name: "Nova",
     link: "https://nova.dev",
     github: "Nova-Prolab",
     discord_id: "542192795289518086",
@@ -28,11 +27,11 @@ export const members: Member[] = [
     name: "iduckfult",
     link: "https://duckccy.dev",
     github: "duckccy",
-    discord_id: "573610301140762664",
+    discord_id: "617183072626016256",
   },
  
 ].sort((a, b) => {
-  const topOrder = ["arespro", "cortex", "nyx"];
+  const topOrder = ["lockfile", "iduckfult", "Nova"];
   if (topOrder.includes(a.name) && topOrder.includes(b.name)) return topOrder.indexOf(a.name) - topOrder.indexOf(b.name);
   if (topOrder.includes(a.name)) return -1;
   if (topOrder.includes(b.name)) return 1;
