@@ -50,8 +50,8 @@ body {
 body::before {
   background: linear-gradient(
     135deg,
-    rgba(11, 31, 209, 0.5) 0%,
-    rgba(18, 18, 18, 0.5) 25%,
+    rgba(8, 8, 8, 0.5) 0%,
+    rgba(255, 0, 0, 0.5) 25%,
     rgba(26, 26, 26, 0.5) 50%,
     rgba(18, 18, 18, 0.5) 75%,
     rgba(8, 8, 8, 0.5) 100%
