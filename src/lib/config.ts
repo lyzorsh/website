@@ -42,7 +42,7 @@ export const members: Member[] = [
     
   },
   {
-    name: "iduckfult",
+    name: "lolo3",
     link: "https://github.com/duckccy",
     github: "duckccy",
     discord_id: "573610301140762664",
@@ -129,26 +129,10 @@ export const members: Member[] = [
     ],
   },
   {
-    name: "catchii",
-    link: "https://catchii.cat/",
-    discord_id: "1201465397988315158",
-    projects: [
-      {
-        name: "guns.lol",
-        description:
-          "A bio page platform where users can create profiles to showcase their links and social media.",
-        url: "https://guns.lol/",
-        icon: "https://assets.guns.lol/guns_logo_no_background_cropped.png",
-        type: "website" as const,
-      },
-      {
-        name: "MailHaven",
-        description: "Your privacy matters. That’s why we created MailHaven, a free secure and privacy-respected email service designed for you.",
-        url: "https://mailhaven.su",
-        icon: "https://cdn.nest.rip/uploads/68dd7dca-4d81-4313-b511-7cd6e4695139.jpg",
-        type: "website" as const,
-      }
-    ],
+    name: "iduckfult",
+    link: "https://github.com/duckccy",
+    github: "duckccy",
+    discord_id: "573610301140762664",
   },
   {
     name: "bird",
