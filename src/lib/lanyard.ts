@@ -76,6 +76,7 @@ export class LanyardWebSocket {
     this.ws = new WebSocket(LANYARD_SOCKET_URL);
 
     this.ws.onopen = () => {
+      // Al abrir conexión, enviar suscripciones actuales
       this.ws?.send(
         JSON.stringify({
           op: 2,
@@ -89,11 +90,14 @@ export class LanyardWebSocket {
 
       switch (payload.op) {
         case 1:
+          // Iniciar latido (heartbeat)
           this.heartbeat = setInterval(() => {
             this.ws?.send(JSON.stringify({ op: 3 }));
           }, payload.d.heartbeat_interval);
           break;
+
         case 0:
+          // Evento de actualización de presencia
           if (
             (payload.t === "INIT_STATE" || payload.t === "PRESENCE_UPDATE") &&
             payload.d &&
@@ -108,8 +112,14 @@ export class LanyardWebSocket {
     };
 
     this.ws.onclose = () => {
+      // Limpiar heartbeat y reconectar tras 1s
       if (this.heartbeat) clearInterval(this.heartbeat);
       setTimeout(() => this.connect(), 1000);
+    };
+
+    this.ws.onerror = (err) => {
+      console.error("WebSocket error:", err);
+      this.ws?.close();
     };
   }
 
