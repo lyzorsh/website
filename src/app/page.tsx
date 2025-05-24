@@ -207,7 +207,7 @@ export default function Home() {
     return (
       <div
         className={`absolute -bottom-[2px] -right-[2px] ${sizeClasses} rounded-full ${borderClasses} ${getStatusColor(member.discord_data.discord_status)}`}
-        style={{ borderColor: "rgb(35, 35, 35)" }}
+        style={{ borderColor: "rgb(4, 9, 12)" }}
       />
     );
   };
