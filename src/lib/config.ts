@@ -29,6 +29,12 @@ export const members: Member[] = [
     github: "duckccy",
     discord_id: "617183072626016256",
   },
+  {
+    name: "cache",
+    link: "https://dsc.gg/curebot",
+    github: "x2dh",
+    discord_id: "1243274323402293259",
+  },
  
 ].sort((a, b) => {
   const topOrder = ["lockfile", "iduckfult", "Nova"];
